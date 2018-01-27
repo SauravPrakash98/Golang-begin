@@ -19,7 +19,7 @@ func main() {
   } */
 
   fmt.Println("Launching server.. ")
-  ln, _ := net.Listen("tcp", ":8081") //listen on all interfaces
+  ln, _ := net.Listen("tcp", ":8079") //listen on all interfaces
 
   conn, _ := ln.Accept() //accept connection
 
@@ -28,12 +28,12 @@ func main() {
   newmessage :=strings.ToUpper(message)
   conn.Write([]byte(newmessage + " CLIENT \n"))
 
-  conn1, _ := net.Dial("tcp", "192.168.0.105:8081")
+  conn1, _ := net.Dial("tcp", "192.168.0.105:8079")
 
   reader := bufio.NewReader(os.Stdin)
   fmt.Print("Text to send :")
   text, _ :=reader.ReadString('\n')
-  fmt.Fprintf(conn, text + "\n")
+  fmt.Fprintf(conn1, text + "\n")
 
   message1, _ := bufio.NewReader(conn1).ReadString('\n')
   fmt.Printf("Message from Server:" + message1)
